@@ -1,41 +1,17 @@
 <template>
   <div>
     <ul class="mui-table-view mui-table-view-chevron">
-      <li class="mui-table-view-cell mui-media">
-        <a class="mui-navigate-right">
-          <img class="mui-media-object mui-pull-left" src="../../img/1.png">
+      <li class="mui-table-view-cell mui-media" v-for="item in newsList" :key="item.id">
+        <router-link :to="'/home/newsinfo/' + item.id">
+          <img class="mui-media-object mui-pull-left" :src="item.imgUrl">
           <div class="mui-media-body">
-            <h1>等待</h1>
+            <h1>{{ item.title }}</h1>
             <p class='mui-ellipsis'>
-              <span>2019.9.10</span>
-              <span>阅读量：684</span>
+              <span>{{ item.time | dataFormat('YYYY-MM-DD') }}</span>
+              <span>阅读量：{{ item.click }}</span>
             </p>
           </div>
-        </a>
-      </li>
-      <li class="mui-table-view-cell mui-media">
-        <a class='mui-navigate-right' href="javascript:;">
-          <img class="mui-media-object mui-pull-left" src="../../img/1.png">
-          <div class="mui-media-body">
-            <h1>等待</h1>
-            <p class='mui-ellipsis'>
-              <span>2019.9.10</span>
-              <span>阅读量：684</span>
-            </p>
-          </div>
-        </a>
-      </li>
-      <li class="mui-table-view-cell mui-media">
-        <a class="mui-navigate-right">
-          <img class="mui-media-object mui-pull-left" src="../../img/1.png">
-          <div class="mui-media-body">
-            <h1>等待</h1>
-            <p class='mui-ellipsis'>
-              <span>2019.9.10</span>
-              <span>阅读量：684</span>
-            </p>
-          </div>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -45,20 +21,17 @@
 export default {
   data() {
     return {
-      getNewsList: []
+      newsList: []
     }
   },
-  created() { 
-    this.getData() 
+  created() {
+    this.getNewsTopic()
   },
   methods: {
-    getData() {
-      this.$http.get('./data.json').then((result)=>{
-          this.getNewsList = result.body.message;
-          console.log(this.getNewsList)
-      }, (err)=>{
-        console.log(err)
-      })
+    getNewsTopic() {
+      this.$http.get('static/news/newsTopic.json').then((result)=>{
+        this.newsList = result.body;
+      }, (err)=>{console.log(err)})
     }
   }
 }

@@ -8,7 +8,7 @@
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newList">
               <img src="../../img/menu1.png" alt="">
-              <div class="mui-media-body">新闻热点 </div></router-link></li>
+              <div class="mui-media-body">热评专区 </div></router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
               <img src="../../img/menu2.png" alt="">
               <div class="mui-media-body">每周排行</div></a></li>
@@ -35,16 +35,15 @@ export default {
       // data: []
     }
   },
-  created() {
-    this.getBanner()
-  },
+  // created() {
+  //   this.getBanner()
+  // },
   methods: {
-    getBanner() {
+    // getBanner() {
       // this.$http.get('http://vue.studyit.io/api/getlunbo').then(result=>{
       //   this.data = result.body.message;
       // })
     }
-  }
 }
 </script>
 
