@@ -1,12 +1,12 @@
 let fs = require('fs'),
   ary = [];
-for (let i=1; i<=10; i++) {
+for (let i=1; i<=5; i++) {
   ary.push({
     "id": i,
-    "commentName": "阿花",
-    "time": "2019-10-12T05:13:06.000Z",
-    "text": "hello world! "
+    "title": "甜品小屋",
+    "img_url": "http://fuss10.elemecdn.com/b/18/0678e57cb1b226c04888e7f244c20jpeg.jpeg",
+    "text": "甜品，也叫甜点，是一个很广的概念，大致分为甜味点心和广式的糖水。"
   })
 }
 
-fs.writeFileSync('./comment.json', JSON.stringify(ary), 'utf-8')
+fs.writeFileSync('./photo/photoMin.json', JSON.stringify(ary), 'utf-8')
