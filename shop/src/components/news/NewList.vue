@@ -5,7 +5,7 @@
         <router-link :to="'/home/newsinfo/' + item.id">
           <img class="mui-media-object mui-pull-left" :src="item.imgUrl">
           <div class="mui-media-body">
-            <h1>{{ item.title }}</h1>
+            <h1>{{ item.title }} {{ item.id }}</h1>
             <p class='mui-ellipsis'>
               <span>{{ item.time | dataFormat('YYYY-MM-DD') }}</span>
               <span>阅读量：{{ item.click }}</span>

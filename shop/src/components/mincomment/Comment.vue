@@ -25,7 +25,10 @@ export default {
     return {
       comments: [],
       msg: '',
-      tmpMsg: ''
+      tmpMsg: '',
+  //父组件的传值？
+      id: ''
+
     }
   },
   created() {
@@ -52,16 +55,22 @@ export default {
       this.comments.unshift(this.tmpMsg);
       this.msg = ''
     }
-  }
-  
+  },
+  prop: ["id"]
 }
 </script>
 
 <style lang="scss">
 .commentArea {
+  padding: 5px;
+  .title {
+    font-weight: 600;
+    text-align: center;
+  }
   textarea {
     font-size: 14px;
   }
+
   .show-item {
     margin: 10px 0;
     font-size: 14px;

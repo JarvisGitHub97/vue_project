@@ -16,6 +16,7 @@ import 'mint-ui/lib/style.css'
 //导入样式库
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
+import './lib/bootstrap/css/bootstrap.css'
 //导入路由实例
 import router from './router'
 //导入自定义组件
@@ -29,6 +30,9 @@ Vue.filter('dataFormat', function(dataStr, pattern="YYYY-MM-DD HH:mm:ss") {
 //导入请求数据模块
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
 
 // import 'default-passive-events'
 //配置根路径

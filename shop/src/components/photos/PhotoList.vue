@@ -23,13 +23,13 @@
     <!-- 图片展示区 -->
       <h4>每周推荐</h4>
       <ul class="showPhoto">
-        <li v-for="item in list" :key="item.id">
+        <router-link :to="'/home/photoInfo/'+item.id" v-for="item in list" :key="item.id" tag="li">
           <img v-lazy="item.img_url">
           <div class="info">
-            <div class="title">{{ item.title }}</div>
+            <div class="title">{{ item.title }} {{ item.id }}</div>
             <div class="body">{{ item.text }}</div>
           </div>
-        </li>
+        </router-link>
       </ul>
 
   </div>

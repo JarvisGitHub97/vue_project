@@ -1,9 +1,9 @@
 <template>
   <div>
     <mt-swipe :auto="4000">
-      <mt-swipe-item>1</mt-swipe-item>
-      <mt-swipe-item>2</mt-swipe-item>
-      <mt-swipe-item>3</mt-swipe-item>
+      <mt-swipe-item v-for="item in data" :key="item.id">
+        <img :src="item.url" alt="">
+      </mt-swipe-item>
     </mt-swipe>    
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newList">
@@ -12,9 +12,9 @@
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photoList">
               <img src="../../img/menu2.png" alt="">
               <div class="mui-media-body">图片浏览</div></router-link></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/goodList">
               <img src="../../img/menu3.png" alt="">
-              <div class="mui-media-body">今日推荐</div></a></li>
+              <div class="mui-media-body">商品购买</div></router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
               <img src="../../img/menu4.png" alt="">
               <div class="mui-media-body">天猫国际</div></a></li>
@@ -32,18 +32,19 @@
 export default {
   data() {
     return {
-      // data: []
+      data: []
     }
   },
-  // created() {
-  //   this.getBanner()
-  // },
+  created() {
+    this.getBanner()
+  },
   methods: {
-    // getBanner() {
-      // this.$http.get('http://vue.studyit.io/api/getlunbo').then(result=>{
-      //   this.data = result.body.message;
-      // })
+    getBanner() {
+      this.$http.get('static/banner/homeBanner.json').then(result=>{
+        this.data = result.body;
+      })
     }
+  }
 }
 </script>
 

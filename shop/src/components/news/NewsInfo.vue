@@ -1,7 +1,7 @@
 <template>
   <div class="nInfo-container">
 
-    <div class="title">{{ info.title }}</div>
+    <div class="title">{{ info.title }}  {{ info.id }}</div>
 
       <div class="time-container">
         <span>发表时间:{{ info.time | dataFormat('YYYY-MM-DD') }}</span>
@@ -43,7 +43,6 @@ export default {
 
 <style lang="scss">
 .nInfo-container {
-  padding: 6px;
   .title {
     font-size: 16px;
     text-align: center;
@@ -58,7 +57,7 @@ export default {
     margin: 0 15px
   }
   .content {
-    margin: 5px 5px;
+    margin: 10px;
   }
 }
 </style>
