@@ -2,7 +2,7 @@
   <div class="shopList">
     <h3>拼夕夕</h3>
     <div class="good-box">
-      <div class="good-item" v-for="item in item" :key="item.id">
+      <div class="good-item" v-for="item in item" :key="item.id" @click="getGoodInfo(item.id)">
         <img :src="item.img_url" alt="">
         <div class="title">{{ item.title }}</div>
         <div class="info">
@@ -35,6 +35,9 @@ methods: {
     this.$http.get("static/goods/goodList.json").then(result=>{
       this.item = result.body;
     })
+  },
+  getGoodInfo(id) {
+    this.$router.push({ name: "myInfo", params: {id: id}});
   }
 }
 }

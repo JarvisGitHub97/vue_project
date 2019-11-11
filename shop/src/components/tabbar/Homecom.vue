@@ -1,10 +1,6 @@
 <template>
   <div>
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="item in data" :key="item.id">
-        <img :src="item.url" alt="">
-      </mt-swipe-item>
-    </mt-swipe>    
+    <banner :bannerData="list"></banner>
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newList">
               <img src="../../img/menu1.png" alt="">
@@ -29,10 +25,11 @@
 </template>
 
 <script>
+import banner from '../banner.vue'
 export default {
   data() {
     return {
-      data: []
+      list: []
     }
   },
   created() {
@@ -41,34 +38,18 @@ export default {
   methods: {
     getBanner() {
       this.$http.get('static/banner/homeBanner.json').then(result=>{
-        this.data = result.body;
+        this.list = result.body;
       })
     }
+  },
+  components: {
+    banner
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
-  background-color: #fff;
-  
-  .mint-swipe-item {
-    &:nth-child(1) {
-        background: lightblue;
-    }
-    &:nth-child(2) {
-      background: moccasin;
-    }
-    &:nth-child(3) {
-      background: pink;
-    }
-    img {
-      width: 100%;
-      height: 100%
-    }
-  }
-}
+
   .mui-grid-view.mui-grid-9 {
     background-color: #fff;
     border: none;

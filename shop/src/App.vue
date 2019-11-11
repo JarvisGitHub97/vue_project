@@ -2,6 +2,9 @@
   <div class="my-container">
     <!-- header -->
     <mt-header fixed title="知乎商城"></mt-header>
+    <div class="back" @click="goBack">
+      <img src="./img/left.png" alt="">
+    </div>
     <!-- router-view -->
     <transition>
     <router-view></router-view>
@@ -29,11 +32,32 @@
 </template>
 
 <script>
+export default {
+methods: {
+  goBack() {
+    this.$router.go(-1);
+  }
+}
+}
+
 </script>
 
 
 <style lang="scss" scoped>
 .my-container {
+    .back {
+      padding: 0px;
+      position: fixed;
+      left: 8px;
+      top: 5px;
+      width: 30px;
+      height: 30px;
+      z-index: 100;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
     overflow-x: hidden;
     padding-top: 40px;
     padding-bottom: 50px
