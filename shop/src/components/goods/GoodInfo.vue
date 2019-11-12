@@ -1,5 +1,12 @@
 <template>
   <div>
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter">
+     <div class="ball" v-show="ballFlag" ref="ball"></div>     
+    </transition>
+
     <div class="mui-card">
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
@@ -14,15 +21,12 @@
 					<div class="mui-card-content-inner">
             <div class="price">
               <p><span>{{ info.new_price }}</span>&nbsp;&nbsp;<del>{{ info.old_price }}</del></p>
-              <p class="buy">购买数量：</p>
-              <div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
-					      <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-					      <input id="test" class="mui-input-numbox" type="number" value="5" />
-					      <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-				      </div>
+              <p class="buy">
+                购买数量：<countBox :class="{ myClass: 'true' }" @getCount="updateCount"></countBox>
+                </p>
               <div class="cart">
                 <mt-button type="primary" size="small">立即购买</mt-button>
-                <mt-button type="danger" size="small">加入购物车</mt-button>
+                <mt-button type="danger" size="small" @click="ballShow">加入购物车</mt-button>
               </div>
             </div>
 					</div>
@@ -48,12 +52,15 @@
 <script>
 import banner from '../banner.vue';
 import { Toast } from 'mint-ui';
+import countBox from './CountBox.vue'
 export default {
   data() {
     return {
       list: [],
       id: this.$route.params.id,
-      info: {}
+      info: {},
+      ballFlag: false,
+      selectCount: 1
     }
   },
   methods: {
@@ -72,14 +79,42 @@ export default {
     },
     noMore() {
       Toast("没有了><")
+    },
+    ballShow() {
+      this.ballFlag = !this.ballFlag;
+    },
+    updateCount(count) {
+      this.selectCount = count;
+    },
+    addToCart() {
+
+    },
+    beforeEnter(el) {
+      el.style.transform = "translate(0, 0)";
+    },
+    enter(el, done) {
+      const ballPosition = this.$refs.ball.getBoundingClientRect();
+      //
+      const targetPosition = document.getElementById('target').getBoundingClientRect();
+      const xDist = targetPosition.left - ballPosition.left;
+      const yDist = targetPosition.top - ballPosition.top;
+      el.offsetWidth;
+      el.style.transform = `translate(${xDist}px, ${yDist}px)`;
+      el.style.transition = "all 0.5s cubic-bezier(.31,-0.11,1,.46)";
+      done();
+    },
+    afterEnter(el) {
+      this.ballFlag = !this.ballFlag;
     }
+    
   },
   created() {
     this.getGoodBanner(),
     this.getGoodInfo()
   },
   components: {
-    banner
+    banner, 
+    countBox
   }
 }
 
@@ -93,12 +128,6 @@ export default {
     color: #DC143C;
     font-weight: bold;
   }
-  .mui-numbox, .buy{
-    display: inline-block;;
-  }
-  .mui-numbox {
-    height: 25px;
-  }
 }
 .myArea {
   padding: 10px 15px 0 15px;
@@ -109,4 +138,18 @@ export default {
     margin: 15px 0 15px 0;
   }
 }
+.ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 999;
+  background-color: #DC143C;
+  left: 150px;
+  top: 400px;
+}
+.myClass {
+  display: inline;
+}
+
 </style>
