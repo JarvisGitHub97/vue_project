@@ -38,8 +38,51 @@ Vue.use(VuePreview)
 //配置根路径
 //Vue.http.options.root = "";
 
+import Vuex from 'vuex'
+Vue.use(Vuex);
+
+var localCart = JSON.parse(localStorage.getItem('cartData') || '[]');
+var store = new Vuex.Store({
+  state: {//this.$store.state.xxx
+    //数据：商品的id，价格，数量，是否选中
+    cart: localCart
+  },
+  mutations: {//this.$store.commit('name', [arg])
+    goodsToStore(state, goodInfo) {
+      //把加入购物车我的商品信息更新到store上
+      //1. store上是否已经有该商品，有则增加数量即可
+      //2. store上没有直接push
+
+      var flag = false; 
+  
+
+      state.cart.some(item=>{
+        if(item.id == goodInfo.id) {
+          item.count += parseInt(goodInfo.count);
+          flag = true;
+          return true   //找到就不再遍历
+        }
+      })
+      if(!flag) {
+        state.cart.push(goodInfo);
+      }
+      localStorage.setItem('cartData', JSON.stringify(state.cart))
+    }
+  },
+  getters: {//this.$store.getters.xxx
+    getCount(state) {
+      var cartCount = 0;
+      state.cart.forEach(item=>{
+        cartCount += item.count;
+      })   
+      return cartCount
+    }
+  }
+});
+
 var vm = new Vue({
   el: '#app', 
   render: c => c(app),
-  router: router
+  router: router,
+  store: store
 })

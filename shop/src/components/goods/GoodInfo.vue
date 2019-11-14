@@ -26,7 +26,7 @@
                 </p>
               <div class="cart">
                 <mt-button type="primary" size="small">立即购买</mt-button>
-                <mt-button type="danger" size="small" @click="ballShow">加入购物车</mt-button>
+                <mt-button type="danger" size="small" @click="addToCart">加入购物车</mt-button>
               </div>
             </div>
 					</div>
@@ -74,19 +74,25 @@ export default {
     },
     getGoodInfo() {
       this.$http.get('static/goods/goodInfo.json').then(result=>{
-        this.info =result.body[this.id]
+        this.info = result.body[this.id-1]
       })
+      console.log(this.id);
     },
     noMore() {
       Toast("没有了><")
-    },
-    ballShow() {
-      this.ballFlag = !this.ballFlag;
     },
     updateCount(count) {
       this.selectCount = count;
     },
     addToCart() {
+      this.ballFlag = !this.ballFlag;
+      var goodsMsg = {
+        id: this.id,
+        price: this.info.new_price,
+        count: this.selectCount,
+        selected: true
+      };
+      this.$store.commit('goodsToStore', goodsMsg);
 
     },
     beforeEnter(el) {
