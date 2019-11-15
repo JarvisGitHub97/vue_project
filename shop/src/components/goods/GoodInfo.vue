@@ -76,7 +76,6 @@ export default {
       this.$http.get('static/goods/goodInfo.json').then(result=>{
         this.info = result.body[this.id-1]
       })
-      console.log(this.id);
     },
     noMore() {
       Toast("没有了><")
