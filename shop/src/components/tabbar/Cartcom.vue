@@ -7,7 +7,7 @@
           <img :src="item.src">
           <div class="right">
             <h3>{{item.title}}</h3>
-              <cartCount></cartCount>
+              <cartCount :initCount="$store.getters.idMapCount[item.id]"></cartCount>
               <span>{{item.price}}</span>
               <span>删除</span>  
           </div>

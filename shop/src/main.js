@@ -70,12 +70,20 @@ var store = new Vuex.Store({
     }
   },
   getters: {//this.$store.getters.xxx
+    //相当于计算属性computed,过滤器filters, 对数据做包装
     getCount(state) {
       var cartCount = 0;
       state.cart.forEach(item=>{
         cartCount += item.count;
       })   
       return cartCount
+    },
+    idMapCount(state) {
+      var obj = {};
+      state.cart.forEach(item=>{
+        obj[item.id] = item.count;
+      })
+      return obj;
     }
   }
 });
