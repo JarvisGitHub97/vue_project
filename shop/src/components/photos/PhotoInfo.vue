@@ -78,7 +78,6 @@ export default {
         box-shadow: 0 0 6px #aaa;
         }
     }
-
   }
 }
 </style>

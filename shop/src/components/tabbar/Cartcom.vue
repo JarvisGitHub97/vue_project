@@ -1,15 +1,19 @@
 <template>
   <div class="cartInfo">
-	  <div class="mui-card">
+	  <div class="mui-card" v-for="(item, objIndex) in renderData" :key="item.id">
 			<div class="mui-card-content">
-				<div class="mui-card-content-inner" v-for="item in renderData" :key="item.id">
-          <mt-switch></mt-switch>
+				<div class="mui-card-content-inner">
+          <!-- 此处没有双向绑定，因为是getters -->
+          <mt-switch v-model="$store.getters.getSelectStatus[item.id]" 
+          @change="storeSelected(item.id, $store.getters.getSelectStatus[item.id])"></mt-switch>  
           <img :src="item.src">
           <div class="right">
             <h3>{{item.title}}</h3>
-              <cartCount :initCount="$store.getters.idMapCount[item.id]"></cartCount>
-              <span>{{item.price}}</span>
-              <span>删除</span>  
+              <cartCount :initCount="$store.getters.idMapCount[item.id]" :goodId="item.id"></cartCount>
+              <div class="right-bottom">
+                <span>￥{{item.price}}</span>
+                <button class="btn btn-sm btn-warning" @click="remove(item.id, objIndex)">删除</button>  
+              </div>
           </div>
 				</div>
 			</div>
@@ -17,8 +21,14 @@
 
 	  <div class="mui-card">
 			<div class="mui-card-content">
-				<div class="mui-card-content-inner">
-          商品结算区
+				<div class="mui-card-content-inner countMoney">
+          <div class="money">
+             <p>总计（包邮）</p>
+             <p>已购商品：<span>{{ $store.getters.computeCart.count }}</span> 件，共 <span>￥{{ $store.getters.computeCart.money }}</span> 元</p> 
+          </div> 
+          <div class="go">
+            <mt-button type="danger">结算</mt-button>
+          </div>
 				</div>
 			</div>
 	  </div>
@@ -53,14 +63,19 @@ export default {
             }
           })
       });
-
+    },
+    remove(id, index) {
+      this.renderData.splice(index, 1);
+      this.$store.commit('removeSelected', id)
+    },
+    storeSelected(id, status) {
+      this.$store.commit('updateSelectStatus', { id:id, selected:status })
     }
   },
   components: {
     cartCount
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -74,11 +89,24 @@ img {
   align-items: center;
 
   .right h3{
-    font-size: 14px;
+    font-size: 13px;
   }
   span {
-      font-size: 12px;
+      font-size: 16px;
       color: red;
+  }
+  .right-bottom {
+    display: flex;
+    justify-content: space-between
+  }
+}
+.countMoney {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  p {
+    margin-bottom: 0.5rem
   }
 }
 .cartInfo {

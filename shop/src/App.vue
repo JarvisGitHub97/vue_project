@@ -1,8 +1,8 @@
 <template>
   <div class="my-container">
     <!-- header -->
-    <mt-header fixed title="知乎商城"></mt-header>
-    <div class="back" @click="goBack">
+    <mt-header fixed title="知乎商城" class="myColor"></mt-header>
+    <div class="back" @click="goBack" v-show="flag">
       <img src="./img/left.png" alt="">
     </div>
     <!-- router-view -->
@@ -33,18 +33,33 @@
 
 <script>
 export default {
+  data() {
+    return {
+      flag: false
+    }
+  },
 methods: {
   goBack() {
     this.$router.go(-1);
+  }
+},
+creates() {
+  this.flag = newVal === '/home' ? false : true ;
+},
+watch: {
+  '$route.path': function(newVal) {
+    this.flag = newVal === '/home' ? false : true ;
   }
 }
 }
 
 </script>
 
-
 <style lang="scss" scoped>
-.my-container {
+  .my-container {
+    .myColor{
+      background-color: #00b4ef;
+    }
     .back {
       padding: 0px;
       position: fixed;

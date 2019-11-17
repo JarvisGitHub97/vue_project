@@ -26,9 +26,7 @@ export default {
       comments: [],
       msg: '',
       tmpMsg: '',
-  //父组件的传值？
       id: ''
-
     }
   },
   created() {
@@ -56,7 +54,7 @@ export default {
       this.msg = ''
     }
   },
-  prop: ["id"]
+  // props: ["id"]
 }
 </script>
 
@@ -70,7 +68,6 @@ export default {
   textarea {
     font-size: 14px;
   }
-
   .show-item {
     margin: 10px 0;
     font-size: 14px;

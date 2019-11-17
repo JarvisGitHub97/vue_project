@@ -23,7 +23,10 @@ var router = new VueRouter({
     { path: '/home/photoList', component: PhotoList },
     { path: '/home/photoInfo/:id', component: PhotoInfo },
     { path: '/home/goodList', component: GoodList},
-    { path: '/home/goodInfo/:id', component: GoodInfo, name: 'myInfo'}
+    { path: '/home/goodInfo/:id', component: GoodInfo, name: 'myInfo'},
+    { path: '/home/forth', component: Search },
+    { path: '/home/fifth', component: Search },
+    { path: '/home/sixth', component: Search }
   ],
   linkActiveClass: 'mui-active'
 })

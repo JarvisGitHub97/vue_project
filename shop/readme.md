@@ -1,9 +1,25 @@
-## vue试试水
+# 基于Vue.js的小商城
+---
 
-### mintUI mui 
+## Introduction
+项目基于Vue 经Webpack打包实现商城的发表评论，购买商品等基本功能，部署在本机的服务器上
 
-### 未解决bug
-1. webpack去除严格模式，使用插件报错。可能是版本问题
+---
+## Webpack
+- 基本配置 
+- plugin配置：`webpack-dev-server`, `html-webpack-plugin`等
+- loader配置：babel, 样式相关的loader等
 
-### 注意的点
-2. style中的scoped 的使用 无法设置引入的非自定的组件，所以要修改样式是注意变量的命名防止全局污染
+## 数据
+- 取：本地mock json格式文件
+- 存：本地localStorage
+
+## 引用
+- 组件：Mint-UI组件库，boostrap
+- 路由：vue-router
+- 数据请求： vue-resource
+- 数据共享：vuex
+
+## Start
+- 装包：`npm install`
+- 启动：`npm run dev`

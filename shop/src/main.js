@@ -47,15 +47,13 @@ var store = new Vuex.Store({
     //数据：商品的id，价格，数量，是否选中
     cart: localCart
   },
+
   mutations: {//this.$store.commit('name', [arg])
     goodsToStore(state, goodInfo) {
       //把加入购物车我的商品信息更新到store上
       //1. store上是否已经有该商品，有则增加数量即可
       //2. store上没有直接push
-
       var flag = false; 
-  
-
       state.cart.some(item=>{
         if(item.id == goodInfo.id) {
           item.count += parseInt(goodInfo.count);
@@ -67,8 +65,36 @@ var store = new Vuex.Store({
         state.cart.push(goodInfo);
       }
       localStorage.setItem('cartData', JSON.stringify(state.cart))
+    },
+    //修改购物车中商品中的数量值，同步到store中
+    updateStore(state, goodInfo) {
+      state.cart.some(item=>{
+        if(item.id == goodInfo.id) {
+          item.count = parseInt(goodInfo.count);
+          return true;
+        }
+      })
+      localStorage.setItem('cartData', JSON.stringify(state.cart))
+    },
+    removeSelected(state, id) {
+      state.cart.some((item, index)=>{
+        if(item.id == id) {
+          state.cart.splice(index, 1);
+          return true;
+        }
+      })
+      localStorage.setItem('cartData', JSON.stringify(state.cart)) 
+    },
+    updateSelectStatus(state, info) {
+      state.cart.some(item=>{
+        if(item.id == info.id) {
+          item.selected = info.selected;
+        }
+      })
+      localStorage.setItem('cartData', JSON.stringify(state.cart)) 
     }
   },
+
   getters: {//this.$store.getters.xxx
     //相当于计算属性computed,过滤器filters, 对数据做包装
     getCount(state) {
@@ -82,6 +108,26 @@ var store = new Vuex.Store({
       var obj = {};
       state.cart.forEach(item=>{
         obj[item.id] = item.count;
+      })
+      return obj;
+    },
+    getSelectStatus(state) {
+      var selectStatus = {};
+      state.cart.forEach(item=>{
+          selectStatus[item.id] = item.selected;
+      })
+      return selectStatus;
+    },
+    computeCart(state) {
+      var obj = {
+        count: 0,
+        money: 0
+      };
+      state.cart.forEach(item=>{
+        if(item.selected) {
+          obj.count += item.count;
+          obj.money += item.count * item.price;
+        }
       })
       return obj;
     }

@@ -11,15 +11,15 @@
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/goodList">
               <img src="../../img/menu3.png" alt="">
               <div class="mui-media-body">商品购买</div></router-link></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/forth">
               <img src="../../img/menu4.png" alt="">
-              <div class="mui-media-body">天猫国际</div></a></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+              <div class="mui-media-body">天猫国际</div></router-link></li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/fifth">
               <img src="../../img/menu5.png" alt="">
-              <div class="mui-media-body">留言反馈</div></a></li>ss
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+              <div class="mui-media-body">留言反馈</div></router-link></li>ss
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/sixth">
               <img src="../../img/menu6.png" alt="">
-              <div class="mui-media-body">联系我们</div></a></li>
+              <div class="mui-media-body">联系我们</div></router-link></li>
     </ul> 
   </div>
 </template>
@@ -49,7 +49,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
   .mui-grid-view.mui-grid-9 {
     background-color: #fff;
     border: none;
@@ -64,5 +63,4 @@ export default {
   .mui-grid-view.mui-grid-9 .mui-table-view-cell {
     border: 0;
   }
-
 </style>

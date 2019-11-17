@@ -16,7 +16,6 @@
 						<a class="mui-control-item" href="#item4mobile" data-wid="tab-top-subpage-4.html">
 							社会
 						</a>
-
 					</div>
 				</div>
 		  </div>
@@ -47,11 +46,6 @@ export default {
   created() {
     this.getphotoList()
   },
-  // mounted() {
-  //   mui('.mui-scroll-wrapper').scroll({
-  //     deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
-  //   })
-  // },
   methods: {
     getphotoList() {
       this.$http.get('static/photo/photoMin.json').then(result=>{
@@ -66,8 +60,6 @@ export default {
 // * {
 // 		touch-action: pan-y;
 // 	}
-
-
 .photo-container {
   h4 {
     text-align: center;

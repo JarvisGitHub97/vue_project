@@ -20,7 +20,7 @@
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
             <div class="price">
-              <p><span>{{ info.new_price }}</span>&nbsp;&nbsp;<del>{{ info.old_price }}</del></p>
+              <p><span>￥{{ info.new_price }}</span>&nbsp;&nbsp;<del>￥{{ info.old_price }}</del></p>
               <p class="buy">
                 购买数量：<countBox :class="{ myClass: 'true' }" @getCount="updateCount"></countBox>
                 </p>
@@ -91,6 +91,7 @@ export default {
         count: this.selectCount,
         selected: true
       };
+      //信息通过vuex中的mutations中自定义的方法 传递给store仓库中的state
       this.$store.commit('goodsToStore', goodsMsg);
 
     },
@@ -111,7 +112,6 @@ export default {
     afterEnter(el) {
       this.ballFlag = !this.ballFlag;
     }
-    
   },
   created() {
     this.getGoodBanner(),
@@ -122,7 +122,6 @@ export default {
     countBox
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -156,5 +155,4 @@ export default {
 .myClass {
   display: inline;
 }
-
 </style>

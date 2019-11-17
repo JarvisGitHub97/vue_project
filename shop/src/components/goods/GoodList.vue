@@ -22,26 +22,25 @@
 
 <script>
 export default {
-data() {
-  return {
-    item: []
-  }
-},
-created() {
-  this.getGoods();
-},
-methods: {
-  getGoods() {
-    this.$http.get("static/goods/goodList.json").then(result=>{
-      this.item = result.body;
-    })
+  data() {
+    return {
+      item: []
+    }
   },
-  getGoodInfo(id) {
-    this.$router.push({ name: "myInfo", params: {id: id}});
+  created() {
+    this.getGoods();
+  },
+  methods: {
+    getGoods() {
+      this.$http.get("static/goods/goodList.json").then(result=>{
+        this.item = result.body;
+      })
+    },
+    getGoodInfo(id) {
+      this.$router.push({ name: "myInfo", params: {id: id}});
+    }
   }
 }
-}
-
 </script>
 
 <style lang="scss" scoped>

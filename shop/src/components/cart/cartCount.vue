@@ -21,15 +21,16 @@ export default {
       if(this.counttmp < 1 ) {
         this.counttmp = 1;
       }
-      console.log(this.counttmp)
-      // this.$refs.inputBox.value = this.counttmp;
-      // this.$emit("getCount", parseInt(this.counttmp));
+      this.$store.commit('updateStore', {
+        id: this.goodId,
+        count: this.counttmp
+      })
     }
   },
   watch: {
     'counttmp': 'update'
   },
-  props: ['initCount']
+  props: ['initCount', 'goodId']
 }
 </script>
 
