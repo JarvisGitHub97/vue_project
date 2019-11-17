@@ -21,5 +21,7 @@
 - 数据共享：vuex
 
 ## Start
-- 装包：`npm install`
+外网速度块的也可以使用npm，推荐使用cnpm
+- 打开项目文件夹，终端进入shop文件
+- 装包：`cnpm install`
 - 启动：`npm run dev`
