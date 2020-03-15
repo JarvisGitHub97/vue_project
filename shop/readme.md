@@ -2,7 +2,7 @@
 ---
 
 ## Introduction
-项目基于Vue 经Webpack打包实现商城的发表评论，购买商品等基本功能，部署在本机的服务器上
+项目基于Vue 经Webpack打包实现商城的发表评论，购买商品等基本功能
 
 ---
 ## Webpack
@@ -15,13 +15,12 @@
 - 存：本地localStorage
 
 ## 引用
-- 组件：Mint-UI组件库，boostrap
+- 组件：Mint-UI组件库，bootstrap
 - 路由：vue-router
 - 数据请求： vue-resource
 - 数据共享：vuex
 
 ## Start
-外网速度快的也可以使用npm，推荐使用cnpm
 - 打开项目文件夹，终端进入shop文件
 - 装包：`$ cnpm install`
 - 启动：`$ npm run dev`
